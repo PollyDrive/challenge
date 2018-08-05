@@ -16,13 +16,20 @@ function createSound(audioName){
 	sound.play();
 }
 
-document.body.addEventListener('keydown', function(e){
+
 	
-	keys.forEach(function(key){
-		const keyAttr = key.getAttribute('data-key');
-		let soundName = key.querySelector('.sound').innerText.toLowerCase();
+keys.forEach(function(key){
+	const keyAttr = key.getAttribute('data-key');
+	let soundName = key.querySelector('.sound').innerText.toLowerCase();
+	document.body.addEventListener('keydown', function(e){
 		if (e.keyCode == keyAttr) {
+			key.classList.add('playing');
 			createSound(soundName );
+		}
+	})
+	document.body.addEventListener('keyup', function(e){
+		if (e.keyCode == keyAttr) {
+			key.classList.remove('playing');
 		}
 	})
 	
